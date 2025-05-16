@@ -3,18 +3,6 @@
 # Создаем директории для интерфейсов
 mkdir -p /etc/net/ifaces/{ens19,ens20}
 
-# Настраиваем интерфейс ens18 (DHCP)
-cat <<EOF > /etc/net/ifaces/ens18/options
-BOOTPROTO=dhcp
-TYPE=eth
-CONFIG_WIRELESS=no
-SYSTEMD_BOOTPROTO=dhcp4
-CONFIG_IPV4=yes
-DISABLED=no
-NM_CONTROLLED=no
-SYSTEMD_CONTROLLED=no
-EOF
-
 # Настраиваем интерфейс ens19 (статический IP)
 cat <<EOF > /etc/net/ifaces/ens19/options
 BOOTPROTO=static
@@ -32,13 +20,16 @@ echo '172.16.4.1/28' > /etc/net/ifaces/ens19/ipv4address
 echo '172.16.5.1/28' > /etc/net/ifaces/ens20/ipv4address
 
 # Включаем форвардинг пакетов
-cat <<EOF > /etc/net/sysctl.conf
-net.ipv4.ip_forward = 1
-net.ipv4.conf.default.rp_filter = 1
-net.ipv4.icmp_echo_ignore_broadcasts = 1
-net.ipv4.tcp_syncookies = 1
-net.ipv4.tcp_timestamps = 0
-EOF
+#cat <<EOF > /etc/net/sysctl.conf
+#net.ipv4.ip_forward = 1
+#net.ipv4.conf.default.rp_filter = 1
+#net.ipv4.icmp_echo_ignore_broadcasts = 1
+#net.ipv4.tcp_syncookies = 1
+#net.ipv4.tcp_timestamps = 0
+#EOF
+
+# Включаем форвардинг пакетов
+sed -i 's/net.ipv4.ip_forward.*/net.ipv4.ip_forward = 1/' /etc/net/sysctl.conf
 
 sysctl -p
 
@@ -54,8 +45,36 @@ service network restart
 systemctl enable iptables
 systemctl start iptables
 
-# Разрешаем root доступ по SSH
-sed -i 's/#*PermitRootLogin.*/PermitRootLogin yes/' /etc/openssh/sshd_config
+# Создаем нового пользователя
+useradd net_admin
+
+# Устанавливаем пароль для пользователя sshuser
+passwd net_admin
+
+# Редактируем файл sudoers, разрешая пользователям группы WHEEL выполнять команды без пароля
+echo '%WHEEL_USERS ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
+
+# Добавляем пользователя sshuser в группу WHEEL
+usermod -aG wheel net_admin
+
+apt-get install frr openssh-server systemd-timesyncd -y
+
+cat <<EOF > /tmp/sshd_new_top
+Port 2024
+PermitRootLogin no
+AllowUsers net_admin
+MaxAuthTries 2
+Banner /etc/openssh/banner
+EOF
+
+cat /etc/ssh/sshd_config >> /tmp/sshd_new_top
+mv /tmp/sshd_new_top /etc/ssh/sshd_config
+
+# Создаем файл баннера входа
+cat <<EOF > /root/banner
+Authorized access only
+
+EOF
 
 # Перезапускаем сервис SSHD
 systemctl restart sshd.service
@@ -63,22 +82,11 @@ systemctl restart sshd.service
 # Переименовываем машину
 hostnamectl set-hostname isp.au-team.irpo
 
-# установка хрони
-apt-get install chrony -y
+systemctl disable --now chronyd
 
-#настройка хрони
-cat <<EOF > /etc/chrony.conf
-pool 172.16.4.2 iburst
-driftfile /var/lib/chrony/drift
-makestep
-rtcsync
-ntsdumpdir /var/lib/chrony
-logdir /var/log/chrony
+cat <<EOF > /etc/systemd/timesyncd.conf
+NTP=172.16.4.2
 EOF
-
-#запуск хрони
-systemctl enable --now chronyd
-systemctl restart chronyd
 
 # Перезагружаем машину
 reboot
