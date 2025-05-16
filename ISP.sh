@@ -84,15 +84,29 @@ sed -i 's/^ospfd=no/ospfd=yes/' /etc/frr/daemons
 
 systemctl restart frr
 
-vtysh <<EOF
-conf t
+#vtysh <<EOF
+#conf t
+#router ospf
+#network 172.16.4.0/28 area 0
+#network 172.16.5.0/28 area 0
+#do wr mem
+#exit
+#exit
+#exit
+#EOF
+
+cat <<EOF > /etc/frr/frr.conf
+frr version 9.0.2
+frr defaults traditional
+hostname isp.au-team.irpo
+log file /var/log/frr/frr.log
+no ipv6 forvarding
+!
 router ospf
-network 172.16.4.0/28 area 0
-network 172.16.5.0/28 area 0
-do wr mem
+ network 172.16.4.0/28 area 0
+ network 172.16.5.0/28 area 0
 exit
-exit
-exit
+!
 EOF
 
 # Переименовываем машину
