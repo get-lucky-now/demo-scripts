@@ -80,7 +80,7 @@ EOF
 systemctl restart sshd.service
 
 # Включаем OSPF
-sed -i 's/ospfd.*/ospfd=yes/' /etc/frr/daemons
+sed -i 's/^ospfd=no/ospfd=yes/' /etc/frr/daemons
 
 systemctl restart frr
 
