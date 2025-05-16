@@ -84,6 +84,17 @@ sed -i 's/^ospfd=no/ospfd=yes/' /etc/frr/daemons
 
 systemctl restart frr
 
+vtysh <<EOF
+conf t
+router ospf
+network 172.16.4.0/28 area 0
+network 172.16.5.0/28 area 0
+do wr mem
+exit
+exit
+exit
+EOF
+
 # Переименовываем машину
 hostnamectl set-hostname isp.au-team.irpo
 
