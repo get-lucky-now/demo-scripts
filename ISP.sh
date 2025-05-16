@@ -45,6 +45,8 @@ service network restart
 systemctl enable iptables
 systemctl start iptables
 
+apt-get install frr openssh-server systemd-timesyncd -y
+
 # Создаем нового пользователя
 useradd net_admin
 
@@ -56,8 +58,6 @@ echo '%WHEEL_USERS ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 # Добавляем пользователя sshuser в группу WHEEL
 usermod -aG wheel net_admin
-
-apt-get install frr openssh-server systemd-timesyncd -y
 
 cat <<EOF > /tmp/sshd_new_top
 Port 2024
