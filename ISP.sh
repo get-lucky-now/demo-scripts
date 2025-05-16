@@ -79,8 +79,10 @@ EOF
 # Перезапускаем сервис SSHD
 systemctl restart sshd.service
 
-# Включаем форвардинг пакетов
-sed -i 'ospfd.*/ospfd=yes/' /etc/frr/daemons
+# Включаем OSPF
+sed -i 's/ospfd.*/ospfd=yes/' /etc/frr/daemons
+
+systemctl restart frr
 
 # Переименовываем машину
 hostnamectl set-hostname isp.au-team.irpo
