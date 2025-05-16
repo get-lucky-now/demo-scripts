@@ -67,11 +67,11 @@ MaxAuthTries 2
 Banner /etc/openssh/banner
 EOF
 
-cat /etc/ssh/sshd_config >> /tmp/sshd_new_top
-mv /tmp/sshd_new_top /etc/ssh/sshd_config
+cat /etc/openssh/sshd_config >> /tmp/sshd_new_top
+mv /tmp/sshd_new_top /etc/openssh/sshd_config
 
 # Создаем файл баннера входа
-cat <<EOF > /root/banner
+cat <<EOF > /etc/openssh/banner
 Authorized access only
 
 EOF
