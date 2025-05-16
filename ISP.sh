@@ -88,5 +88,8 @@ cat <<EOF > /etc/systemd/timesyncd.conf
 NTP=172.16.4.2
 EOF
 
+systemctl enable --now systemd-timesyncd
+systemctl restart systemd-timesyncd
+
 # Перезагружаем машину
 reboot
