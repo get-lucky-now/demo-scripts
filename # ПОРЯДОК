@@ -3,3 +3,9 @@ apt-get install
 wget https://raw.githubusercontent.com/get-lucky-now/script/main/ISP.sh
 chmod +x ISP.sh
 ./ISP.sh
+
+-------------HQ-RTR---------------
+apt-get install
+wget https://raw.githubusercontent.com/get-lucky-now/script/main/HQ-RTR.sh
+chmod +x HQ-RTR.sh
+./HQ-RTR.sh
