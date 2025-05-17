@@ -133,6 +133,7 @@ EOF
 systemctl enable --now frr
 systemctl restart frr
 
+# Настраеваем dnsmasq
 cat <<EOF > /etc/dnsmasq.conf
 no-resolv
 dhcp-range=192.168.2.2,192.168.2.15,999h
@@ -148,6 +149,7 @@ EOF
 systemctl enable --now dnsmasq.service
 systemctl restart dnsmasq.service
 
+# Настраеваем сервер chrony
 cat <<EOF > /etc/chrony.conf
 local stratum 7
 allow 192.168.1.0/26
@@ -167,6 +169,10 @@ EOF
 systemctl enable --now chronyd
 systemctl restart chronyd
 timedatectl set-ntp 0
+
+echo 'domain ak.local' > /etc/resolv.conf
+echo 'nameserver 77.88.8.8' >> /etc/resolv.conf
+echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
 
 exec bash
 #reboot
