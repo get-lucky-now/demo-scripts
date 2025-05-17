@@ -71,7 +71,7 @@ systemctl enable iptables
 systemctl start iptables
 
 apt-get update
-apt-get install frr openssh-server chrony dnsmasq rsyslog-classic
+apt-get install frr openssh-server chrony dnsmasq rsyslog-classic -y
 
 # Создаем нового пользователя
 useradd net_admin
