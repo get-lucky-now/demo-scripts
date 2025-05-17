@@ -157,6 +157,8 @@ allow 192.168.2.0/28
 allow 172.16.4.0/28
 allow 172.16.5.0/28
 allow 192.168.3.0/27
+bindaddress 0.0.0.0
+port 123
 
 driftfile /var/lib/chrony/drift
 makestep 1.0 3
