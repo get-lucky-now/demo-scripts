@@ -110,7 +110,7 @@ systemctl restart frr
 cat <<EOF > /etc/frr/frr.conf
 frr version 9.0.2
 frr defaults traditional
-hostname isp.au-team.irpo
+hostname hq-rtr.au-team.irpo
 log file /var/log/frr/frr.log
 no ipv6 forwarding
 !
