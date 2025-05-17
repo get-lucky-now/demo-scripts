@@ -115,3 +115,5 @@ EOF
 
 systemctl enable --now systemd-timesyncd
 systemctl restart systemd-timesyncd
+
+exec bash
