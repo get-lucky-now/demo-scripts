@@ -100,7 +100,7 @@ frr version 9.0.2
 frr defaults traditional
 hostname isp.au-team.irpo
 log file /var/log/frr/frr.log
-no ipv6 forvarding
+no ipv6 forwarding
 !
 router ospf
  network 172.16.4.0/28 area 0
