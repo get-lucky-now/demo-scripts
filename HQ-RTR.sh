@@ -4,6 +4,9 @@
 hostnamectl set-hostname hq-rtr.au-team.irpo
 exec bash
 
+systemctl stop systemd-resolved
+systemctl disable systemd-resolved
+
 # Создаем директории для интерфейсов
 mkdir -p /etc/net/ifaces/{ens19,ens19.100,ens19.200,ens19.999,iptunnel}
 
