@@ -100,6 +100,7 @@ Authorized access only
 EOF
 
 # Перезапускаем сервис SSHD
+systemctl enable --now sshd.service
 systemctl restart sshd.service
 
 # Включаем OSPF
@@ -125,6 +126,7 @@ exit
 !
 EOF
 
+systemctl enable --now frr
 systemctl restart frr
 
 cat <<EOF > /etc/dnsmasq.conf
@@ -139,7 +141,7 @@ localise-queries
 conf-dir=/etc/dnsmasq.conf.d
 EOF
 
-systemctl enable dnsmasq.service
+systemctl enable --now dnsmasq.service
 systemctl restart dnsmasq.service
 
 reboot
