@@ -2,7 +2,6 @@
 
 # Переименовываем машину
 hostnamectl set-hostname hq-rtr.au-team.irpo
-exec bash
 
 systemctl stop systemd-resolved
 systemctl disable systemd-resolved
@@ -169,4 +168,5 @@ systemctl enable --now chronyd
 systemctl restart chronyd
 timedatectl set-ntp 0
 
+exec bash
 #reboot
