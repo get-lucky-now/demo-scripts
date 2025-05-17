@@ -144,4 +144,24 @@ EOF
 systemctl enable --now dnsmasq.service
 systemctl restart dnsmasq.service
 
+cat <<EOF > /etc/chrony.conf
+local stratum 7
+allow 192.168.1.0/26
+allow 192.168.2.0/28
+allow 172.16.4.0/28
+allow 172.16.5.0/28
+allow 192.168.3.0/27
+
+driftfile /var/lib/chrony/drift
+makestep 1.0 3
+#rtcsync
+ntsdumpdir /var/lib/chrony
+logdir /var/log/chrony
+pool 192.168.44.5 iburst
+EOF
+
+systemctl enable --now chronyd
+systemctl restart chronyd
+timedatectl set-ntp 0
+
 reboot
