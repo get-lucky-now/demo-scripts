@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Переименовываем машину
+hostnamectl set-hostname isp.au-team.irpo
+
 # Создаем директории для интерфейсов
 mkdir -p /etc/net/ifaces/{ens19,ens20}
 
@@ -108,9 +111,6 @@ router ospf
 exit
 !
 EOF
-
-# Переименовываем машину
-hostnamectl set-hostname isp.au-team.irpo
 
 systemctl disable --now chronyd
 
