@@ -77,6 +77,7 @@ Authorized access only
 EOF
 
 # Перезапускаем сервис SSHD
+systemctl enable --now sshd.service
 systemctl restart sshd.service
 
 # Включаем OSPF
@@ -108,6 +109,9 @@ router ospf
 exit
 !
 EOF
+
+systemctl enable --now frr
+systemctl restart frr
 
 systemctl disable --now chronyd
 
