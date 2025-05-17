@@ -56,11 +56,8 @@ useradd net_admin
 # Устанавливаем пароль для пользователя sshuser
 passwd net_admin
 
-# Редактируем файл sudoers, разрешая пользователям группы WHEEL выполнять команды без пароля
-echo '%WHEEL_USERS ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
-
-# Добавляем пользователя sshuser в группу WHEEL
-usermod -aG wheel net_admin
+# Редактируем файл sudoers, разрешая пользователю выполнять команды без пароля
+echo 'net_admin ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 cat <<EOF > /tmp/sshd_new_top
 Port 2024
