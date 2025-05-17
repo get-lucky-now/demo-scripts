@@ -139,6 +139,7 @@ localise-queries
 conf-dir=/etc/dnsmasq.conf.d
 EOF
 
+systemctl enable dnsmasq.service
 systemctl restart dnsmasq.service
 
 reboot
