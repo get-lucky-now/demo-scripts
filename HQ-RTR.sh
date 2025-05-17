@@ -70,6 +70,7 @@ service network restart
 systemctl enable iptables
 systemctl start iptables
 
+apt-get update
 apt-get install frr openssh-server chrony dnsmasq rsyslog-classic
 
 # Создаем нового пользователя
@@ -123,3 +124,21 @@ router ospf
 exit
 !
 EOF
+
+systemctl restart frr
+
+cat <<EOF > /etc/dnsmasq.conf
+no-resolv
+dhcp-range=192.168.2.2,192.168.2.15,999h
+dhcp-option=3,192.168.2.1
+dhcp-option=6,192.168.1.10
+interface=ens19.200
+
+expand-hosts
+localise-queries
+conf-dir=/etc/dnsmasq.conf.d
+EOF
+
+systemctl restart dnsmasq.service
+
+reboot
