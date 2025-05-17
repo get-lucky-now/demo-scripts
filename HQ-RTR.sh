@@ -76,7 +76,7 @@ apt-get install frr openssh-server chrony dnsmasq rsyslog-classic
 # Создаем нового пользователя
 useradd net_admin
 
-# Устанавливаем пароль для пользователя sshuser
+# Устанавливаем пароль для пользователя net_admin
 passwd net_admin
 
 # Редактируем файл sudoers, разрешая пользователю выполнять команды без пароля
