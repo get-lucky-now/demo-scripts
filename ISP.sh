@@ -104,6 +104,7 @@ log file /var/log/frr/frr.log
 no ipv6 forwarding
 !
 router ospf
+ router-id 1.1.1.1
  network 172.16.4.0/28 area 0
  network 172.16.5.0/28 area 0
 exit
