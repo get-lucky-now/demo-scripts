@@ -116,6 +116,7 @@ log file /var/log/frr/frr.log
 no ipv6 forwarding
 !
 router ospf
+ router-id 2.2.2.2
  network 10.0.0.0/30 area 0
  network 172.16.4.0/28 area 0
  network 172.16.5.0/28 area 0
@@ -164,4 +165,4 @@ systemctl enable --now chronyd
 systemctl restart chronyd
 timedatectl set-ntp 0
 
-reboot
+#reboot
