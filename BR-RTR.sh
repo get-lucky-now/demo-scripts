@@ -106,3 +106,12 @@ EOF
 
 systemctl enable --now frr
 systemctl restart frr
+
+systemctl disable --now chronyd
+
+cat <<EOF > /etc/systemd/timesyncd.conf
+NTP=172.16.4.2
+EOF
+
+systemctl enable --now systemd-timesyncd
+systemctl restart systemd-timesyncd
