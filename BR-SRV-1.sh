@@ -46,6 +46,12 @@ EOF
 systemctl enable --now systemd-timesyncd
 systemctl restart systemd-timesyncd
 
+wget https://raw.githubusercontent.com/get-lucky-now/script/main/BR-SRV-2.sh
+chmod +x BR-SRV-2.sh
+
+#обновляем пакеты
+apt-get update
+
 # Обновляем файл resolv.conf, оставляя локальную запись DNS
 cat <<EOF > /etc/resolv.conf
 domain ak.local
