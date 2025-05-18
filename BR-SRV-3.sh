@@ -23,7 +23,7 @@ nano /etc/nsswitch.conf:
 sudoers: files sss  # после gshadow
 reboot
 
-rm -rf /var/lib/sssd/db/*
+rm -rf /var/lib/sssd/db/* (rm -rf /var/lib/ssd/db/* или rm -rf /var/lib/sss/db/* если не работает sudo -l -U user1.hq (+2 последующие команды))
 sss_cache -E
 systemctl restart sssd
 sudo -l -U user1.hq
