@@ -83,7 +83,6 @@ mv -f /var/lib/samba/private/krb5.conf /etc/krb5.conf
 systemctl enable smb
 systemctl start smb
 
-
 # Создаем дополнительные файлы автозапуска
 cat <<EOF > /etc/rc.d/rc.local
 #!/bin/sh -e
@@ -94,6 +93,8 @@ EOF
 
 # Предоставляем права на выполнение файла rc.local
 chmod +x /etc/rc.d/rc.local
+
+timedatectl timesync-status
 
 echo "Напоминание: после перезапуска запусти BR-SRV-2.sh"
 read -p "Нажми Enter, чтобы продолжить..."
