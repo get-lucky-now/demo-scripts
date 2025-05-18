@@ -19,5 +19,5 @@ chmod +x BR-RTR.sh
 -------------HQ-SRV---------------
 apt-get install
 wget https://raw.githubusercontent.com/get-lucky-now/script/main/HQ-SRV.sh
-chmod +x HHQ-SRV.sh
+chmod +x HQ-SRV.sh
 ./HQ-SRV.sh
