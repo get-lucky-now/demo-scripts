@@ -52,6 +52,8 @@ echo "Возвращаемся на BR-SRV"
 read -p "Нажми Enter, чтобы продолжить..."
 
 # распаковка юзеров
+apt-get update
+apt-get install curl -y
 curl -L https://bit.ly/3C1nEYz > /root/users.zip
 unzip /root/users.zip
 
