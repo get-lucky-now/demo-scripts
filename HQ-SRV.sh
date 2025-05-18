@@ -78,4 +78,6 @@ EOF
 systemctl enable --now dnsmasq
 systemctl restart dnsmasq
 
+timedatectl timesync-status
+
 exec bash
