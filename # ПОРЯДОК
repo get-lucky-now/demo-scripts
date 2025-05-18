@@ -30,6 +30,6 @@ chmod +x HQ-CLI.sh
 
 -------------BR-SRV---------------
 apt-get install
-wget https://raw.githubusercontent.com/get-lucky-now/script/main/BR-SRV.sh
-chmod +x BR-SRV.sh
-./BR-SRV.sh
+wget https://raw.githubusercontent.com/get-lucky-now/script/main/BR-SRV-1.sh
+chmod +x BR-SRV-1.sh
+./BR-SRV-1.sh
