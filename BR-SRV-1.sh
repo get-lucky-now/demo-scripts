@@ -39,9 +39,11 @@ systemctl restart sshd.service
 # Настраиаем timesyncd
 systemctl disable --now chronyd
 
-cat <<EOF >> /etc/systemd/timesyncd.conf
-NTP=172.16.4.2
-EOF
+#cat <<EOF >> /etc/systemd/timesyncd.conf
+#NTP=172.16.4.2
+#EOF
+
+echo 'NTP=172.16.4.2' >> /etc/systemd/timesyncd.conf
 
 systemctl enable --now systemd-timesyncd
 systemctl restart systemd-timesyncd
