@@ -1,5 +1,9 @@
 #!/bin/bash
 
+systemctl stop systemd-resolved
+systemctl disable systemd-resolved
+systemctl restart samba
+
 samba-tool domain info 127.0.0.1
 
 read -p "Нажми Enter, чтобы продолжить..."
@@ -14,23 +18,27 @@ samba-tool user add user5.hq P@ssw0rd
 samba-tool group add hq
 samba-tool group addmembers hq user1.hq,user2.hq,user3.hq,user4.hq,user5.hq
 
-echo "🔔 Напоминание: сейчас выполни дейтвия на КЛИ и перезагрузи её, после этого продолжай"
+echo "Напоминание: сейчас выполни дейтвия на КЛИ и перезагрузи её, после этого продолжай"
+echo "На CLI: Центр управления системой > Аутентификация > Домен Active Directory"
+echo "Домен: AU-TEAM.IRPO"
+echo "Рабочая группа: AU-TEAM"
+echo "Имя компьютера: hq-cli"
+echo "Восстановить файлы конфигурации по умолчанию > P@ssw0rd > reboot"
+echo "P@ssw0rd"
+echo "reboot"
 read -p "Нажми Enter, чтобы продолжить..."
 
-# распаковка юзеров
-curl -L https://bit.ly/3C1nEYz > /root/users.zip
-unzip /root/users.zip
-
-# запуск скрипта 
-csv_file="/root/Users.csv"
-while IFS=";" read -r firstName lastName role phone ou street zip city country password; do
-	if [ "$firstName" == "First Name" ]; then
-		continue
-	fi
-	username="${firstName,,}.${lastName,,}"
-	samba-tool user add "$username" P@ssw0rd;
-done < "$csv_file"
-
-# Обновляем систему
+apt-repo add rpm http://altrepo.ru/local-p10 noarch local-p10
 apt-get update
+apt-get install sudo-samba-schema
+
+echo "Напоминание: сейчас выполни sudo-schema-apply > yes, затем create-sudo-rule"
+echo "Имя правила: prava_hq"
+echo "sudoCommand: /bin/cat"
+echo "sudoUser: %hq"
+
+echo "Затем запусти BR-SRV-3.sh"
+read -p "Нажми Enter, чтобы продолжить..."
+
+
 
