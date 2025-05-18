@@ -58,8 +58,8 @@ apt-get update
 
 # Обновляем файл resolv.conf, оставляя локальную запись DNS
 cat <<EOF > /etc/resolv.conf
-domain ak.local
-nameserver 8.8.8.8
+#domain ak.local
+#nameserver 8.8.8.8
 nameserver 127.0.0.1
 EOF
 
