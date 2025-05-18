@@ -31,7 +31,7 @@ read -p "Нажми Enter, чтобы продолжить..."
 
 apt-repo add rpm http://altrepo.ru/local-p10 noarch local-p10
 apt-get update
-apt-get install sudo-samba-schema
+apt-get install sudo-samba-schema -y
 
 echo "Напоминание: сейчас выполни sudo-schema-apply > yes, затем create-sudo-rule"
 echo "Имя правила: prava_hq"
