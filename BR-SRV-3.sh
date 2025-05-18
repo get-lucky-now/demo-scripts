@@ -21,12 +21,11 @@ sudo_provider = ad  (после id_provider и перед auth_provider)
 
 nano /etc/nsswitch.conf:
 sudoers: files sss  # после gshadow
-
 reboot
+
 rm -rf /var/lib/sssd/db/*
 sss_cache -E
 systemctl restart sssd
-
 sudo -l -U user1.hq
 reboot
 
