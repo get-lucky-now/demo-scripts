@@ -45,3 +45,42 @@ EOF
 
 systemctl enable --now systemd-timesyncd
 systemctl restart systemd-timesyncd
+
+# Обновляем файл resolv.conf, оставляя локальную запись DNS
+cat <<EOF > /etc/resolv.conf
+domain ak.local
+nameserver 8.8.8.8
+nameserver 127.0.0.1
+EOF
+
+# Очищаем старую конфигурацию Samba
+rm -rf /etc/samba/smb.conf
+
+# Обновляем hosts-файл
+cat <<EOF > /etc/hosts
+192.168.3.10	br-srv.au-team.irpo
+EOF
+
+# Создаем новую доменную структуру с использованием samba-tool
+samba-tool domain provision
+
+# Перемещаем конфиг KRB5 в нужный каталог
+mv -f /var/lib/samba/private/krb5.conf /etc/krb5.conf
+
+systemctl enable smb
+systemctl start smb
+
+
+# Создаем дополнительные файлы автозапуска
+cat <<EOF > /etc/rc.d/rc.local
+#!/bin/sh -e
+systemctl restart network
+systemctl restart samba
+exit 0
+EOF
+
+# Предоставляем права на выполнение файла rc.local
+chmod +x /etc/rc.d/rc.local
+
+# Перезагрузка системы для применения изменений
+reboot
