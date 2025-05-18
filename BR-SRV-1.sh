@@ -93,7 +93,7 @@ exit 0
 EOF
 
 # Предоставляем права на выполнение файла rc.local
-chmod +x /etc/rc.d/rc.local
+#chmod +x /etc/rc.d/rc.local
 
 echo "Напоминание: после перезапуска запусти BR-SRV-2.sh"
 read -p "Нажми Enter, чтобы продолжить..."
