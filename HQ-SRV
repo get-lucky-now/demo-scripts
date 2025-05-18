@@ -46,7 +46,7 @@ EOF
 systemctl enable --now systemd-timesyncd
 systemctl restart systemd-timesyncd
 
-cat <<EOF > /etc/openssh/banner
+cat <<EOF > /etc/dnsmasq.conf
 domain=au-team.irpo
 server=8.8.8.8
 server=/au-team.irpo/192.168.3.10
