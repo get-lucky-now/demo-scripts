@@ -1,35 +1,35 @@
 -------------ISP---------------
-apt-get install
+apt-get install wget
 wget https://raw.githubusercontent.com/get-lucky-now/script/main/ISP.sh
 chmod +x ISP.sh
 ./ISP.sh
 
 -------------HQ-RTR---------------
-apt-get install
+apt-get install wget
 wget https://raw.githubusercontent.com/get-lucky-now/script/main/HQ-RTR.sh
 chmod +x HQ-RTR.sh
 ./HQ-RTR.sh
 
 -------------BR-RTR---------------
-apt-get install
+apt-get install wget
 wget https://raw.githubusercontent.com/get-lucky-now/script/main/BR-RTR.sh
 chmod +x BR-RTR.sh
 ./BR-RTR.sh
 
 -------------HQ-SRV---------------
-apt-get install
+apt-get install wget
 wget https://raw.githubusercontent.com/get-lucky-now/script/main/HQ-SRV.sh
 chmod +x HQ-SRV.sh
 ./HQ-SRV.sh
 
 -------------HQ-CLI---------------
-apt-get install
+apt-get install wget
 wget https://raw.githubusercontent.com/get-lucky-now/script/main/HQ-CLI.sh
 chmod +x HQ-CLI.sh
 ./HQ-CLI.sh
 
 -------------BR-SRV---------------
-apt-get install
+apt-get install wget
 wget https://raw.githubusercontent.com/get-lucky-now/script/main/BR-SRV-1.sh
 chmod +x BR-SRV-1.sh
 ./BR-SRV-1.sh
