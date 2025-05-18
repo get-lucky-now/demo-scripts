@@ -73,3 +73,7 @@ address=/isp.au-team.irpo/172.16.5.1
 ptr-record=1.5.16.172.in-addr.arpa,isp.au-team.irpo
 EOF
 
+systemctl enable --now dnsmasq
+systemctl restart dnsmasq
+
+exec bash
