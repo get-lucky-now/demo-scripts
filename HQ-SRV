@@ -46,3 +46,30 @@ EOF
 systemctl enable --now systemd-timesyncd
 systemctl restart systemd-timesyncd
 
+cat <<EOF > /etc/openssh/banner
+domain=au-team.irpo
+server=8.8.8.8
+server=/au-team.irpo/192.168.3.10
+interface=ens18
+
+address=/hq-rtr.au-team.irpo/192.168.1.1
+ptr-record=1.1.168.192.in-addr.arpa,hq-rtr.au-team.irpo
+
+address=/hq-srv.au-team.irpo/192.168.1.10
+ptr-record=10.1.168.192.in-addr.arpa,hq-srv.au-team.irpo
+cname=moodle.au-team.irpo,br-srv.au-team.irpo
+cname=wiki.au-team.irpo,br-srv.au-team.irpo
+
+address=/hq-cli.au-team.irpo/192.168.2.12
+ptr-record=12.2.168.192.in-addr.arpa,hq-cli.au-team.irpo
+
+address=/br-rtr.au-team.irpo/192.168.3.1
+ptr-record=1.3.168.192.in-addr.arpa,br-rtr.au-team.irpo
+
+address=/br-srv.au-team.irpo/192.168.3.10
+ptr-record=10.3.168.192.in-addr.arpa,br-srv.au-team.irpo
+
+address=/isp.au-team.irpo/172.16.5.1
+ptr-record=1.5.16.172.in-addr.arpa,isp.au-team.irpo
+EOF
+
