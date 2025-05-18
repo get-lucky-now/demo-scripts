@@ -63,9 +63,12 @@ EOF
 rm -rf /etc/samba/smb.conf
 
 # Обновляем hosts-файл
-cat <<EOF > /etc/hosts
-192.168.3.10	br-srv.au-team.irpo
+cat <<EOF >> /etc/hosts
+192.168.3.10  br-srv.au-team.irpo
 EOF
+
+echo " Напоминание: сейчас AU-TEAM.IRPO > AU-TEAM > dc > SAMBA_INTERNAL > 192.168.1.10 (вручную) > P@ssw0rd"
+read -p "Нажми Enter, чтобы продолжить..."
 
 # Создаем новую доменную структуру с использованием samba-tool
 samba-tool domain provision
