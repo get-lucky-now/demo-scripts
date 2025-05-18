@@ -117,5 +117,5 @@ echo 'NTP=172.16.4.2' >> /etc/systemd/timesyncd.conf
 
 systemctl enable --now systemd-timesyncd
 systemctl restart systemd-timesyncd
-
+timedatectl timesync-status
 exec bash
