@@ -26,6 +26,7 @@ echo "Имя компьютера: hq-cli"
 echo "Восстановить файлы конфигурации по умолчанию > P@ssw0rd > reboot"
 echo "P@ssw0rd"
 echo "reboot"
+echo "Возвращаемся на BR-SRV"
 read -p "Нажми Enter, чтобы продолжить..."
 
 apt-repo add rpm http://altrepo.ru/local-p10 noarch local-p10
