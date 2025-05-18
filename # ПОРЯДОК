@@ -9,3 +9,15 @@ apt-get install
 wget https://raw.githubusercontent.com/get-lucky-now/script/main/HQ-RTR.sh
 chmod +x HQ-RTR.sh
 ./HQ-RTR.sh
+
+-------------BR-RTR---------------
+apt-get install
+wget https://raw.githubusercontent.com/get-lucky-now/script/main/BR-RTR.sh
+chmod +x BR-RTR.sh
+./BR-RTR.sh
+
+-------------HQ-SRV---------------
+apt-get install
+wget https://raw.githubusercontent.com/get-lucky-now/script/main/HQ-SRV.sh
+chmod +x HHQ-SRV.sh
+./HQ-SRV.sh
